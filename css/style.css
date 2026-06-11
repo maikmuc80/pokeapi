@@ -108,6 +108,16 @@ html {
 
     border: 1px solid;
     border-radius: 20px;
+}
 
+.pokemon-card h2 {
+  text-transform: uppercase;
+}
 
+.type-badge {
+  background: var(--tertiary_color);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  text-transform: capitalize;
 }

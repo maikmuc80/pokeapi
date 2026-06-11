@@ -32,7 +32,7 @@ function renderCard(pokemon) {
         <div class="pokemon-card" style="background: var(--type-${mainType})">
             <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
             <h2>${pokemon.name}</h2>
-            <p>${pokemon.types[0].type.name}</p>
+            <p class="type-badge">${pokemon.types[0].type.name}</p>
         </div>
     `;
 }
