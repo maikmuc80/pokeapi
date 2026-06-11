@@ -101,13 +101,22 @@ html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 200px;
     gap: 10px;
+    color: white;
 
     max-width: 300px;
     padding: 15px;
 
     border: 1px solid;
     border-radius: 20px;
+
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.pokemon-card:hover {
+  transform: translateY(-6px);
 }
 
 .pokemon-card h2 {
