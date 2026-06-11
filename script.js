@@ -17,8 +17,10 @@ async function loadPokemon() {
     const details = await Promise.all(
         data.results.map(p => fetch(p.url).then(r => r.json()))
         );
-        allPokemon.push(...details)
-    details.forEach(pokemon => renderCard(pokemon));
+        allPokemon.push(...details);
+        details.forEach(pokemon => renderCard(pokemon));
+    offset += PAGE_SIZE;
+    console.log(offset);
 }
 
 function renderCard(data) {
@@ -27,6 +29,7 @@ function renderCard(data) {
             <img src="${data.sprites.front_default}" alt="${data.name}">
             <h2>${data.name}</h2>
             <p>${data.types[0].type.name}</p>
+            
         </div>
     `
 }
