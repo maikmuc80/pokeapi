@@ -26,13 +26,13 @@ async function loadPokemon() {
     console.log(offset);
 }
 
-function renderCard(data) {
+function renderCard(pokemon) {
+    const mainType = pokemon.types[0].type.name;
     card.innerHTML += `
-        <div class="pokemon-card">
-            <img src="${data.sprites.front_default}" alt="${data.name}">
-            <h2>${data.name}</h2>
-            <p>${data.types[0].type.name}</p>
-
+        <div class="pokemon-card" style="background: var(--type-${mainType})">
+            <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+            <h2>${pokemon.name}</h2>
+            <p>${pokemon.types[0].type.name}</p>
         </div>
-    `
+    `;
 }
