@@ -1,5 +1,6 @@
 const API_URL = "https://pokeapi.co/api/v2/pokemon";
 const PAGE_SIZE = 20;
+const loadMoreBtn = document.getElementById("load-more-button");
 
 let offset = 0;
 let allPokemon = [];
@@ -12,6 +13,7 @@ function init() {
 }
 
 async function loadPokemon() {
+    loadMoreBtn.disabled = true;
     const response = await fetch(`${API_URL}?limit=${PAGE_SIZE}&offset=${offset}`);
     const data = await response.json();
     const details = await Promise.all(
@@ -20,6 +22,7 @@ async function loadPokemon() {
         allPokemon.push(...details);
         details.forEach(pokemon => renderCard(pokemon));
     offset += PAGE_SIZE;
+    loadMoreBtn.disabled = false;
     console.log(offset);
 }
 
@@ -29,7 +32,7 @@ function renderCard(data) {
             <img src="${data.sprites.front_default}" alt="${data.name}">
             <h2>${data.name}</h2>
             <p>${data.types[0].type.name}</p>
-            
+
         </div>
     `
 }
