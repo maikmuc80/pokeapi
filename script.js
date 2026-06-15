@@ -92,3 +92,9 @@ function searchPokemon() {
 
   results.forEach(pokemon => renderCard(pokemon));
 }
+
+function resetSearch() {
+  document.getElementById("search-input").value = "";
+  card.innerHTML = "";
+  allPokemon.forEach(pokemon => renderCard(pokemon));
+}
