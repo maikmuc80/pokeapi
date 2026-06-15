@@ -68,3 +68,24 @@ function handleDialogClick(event) {
     closeDialog();
   }
 }
+
+function searchPokemon() {
+  const input = document.getElementById("search-input").value.toLowerCase();
+  
+   if (input.length < 3) {
+        card.innerHTML = `<p data-id="not-found">Please enter at least 3 letters.</p>`;
+        return;
+    }
+
+
+  const results = allPokemon.filter(p => p.name.includes(input));
+  
+  card.innerHTML = "";
+  
+  if (results.length === 0) {
+    card.innerHTML = `<p data-id="not-found">No Pokémon found.</p>`;
+    return;
+  }
+
+  results.forEach(pokemon => renderCard(pokemon));
+}
