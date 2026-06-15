@@ -13,6 +13,7 @@ const nextBtn = document.getElementById("next-button");
 let offset = 0;
 let allPokemon = [];
 let currentIndex = 0;
+let searchResults = [];
 
 const card = document.getElementById("card");
 const loader = document.getElementById("loader");
@@ -38,7 +39,8 @@ async function loadPokemon() {
 
 function renderCard(pokemon) {
     const mainType = pokemon.types[0].type.name;
-    const index = allPokemon.indexOf(pokemon);
+    const activeList = searchResults.length > 0 ? searchResults : allPokemon;
+    const index = activeList.indexOf(pokemon);
     card.innerHTML += `
         <div class="pokemon-card" style="background: var(--type-${mainType})" onclick="openDialog(${index})">
             <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
@@ -49,8 +51,10 @@ function renderCard(pokemon) {
 }
 
 function openDialog(index) {
+    const activeList = searchResults.length > 0 ? searchResults : allPokemon;
+    if (index < 0 || index >= activeList.length) return;
     currentIndex = index;
-    const pokemon = allPokemon[index];
+    const pokemon = activeList[index];
     const mainType = pokemon.types[0].type.name;
     dialogImage.src = pokemon.sprites.front_default;
     dialogName.textContent = pokemon.name.toUpperCase();
@@ -67,35 +71,36 @@ function closeDialog() {
 }
 
 function handleDialogClick(event) {
-  if (event.target === dialog) {
-    closeDialog();
-  }
+    if (event.target === dialog) {
+        closeDialog();
+    }
 }
 
 function searchPokemon() {
-  const input = document.getElementById("search-input").value.toLowerCase();
-  
-   if (input.length < 3) {
+    const input = document.getElementById("search-input").value.toLowerCase();
+    
+    if (input.length < 3) {
         card.innerHTML = `<p data-id="not-found">Please enter at least 3 letters.</p>`;
         return;
     }
 
-  const results = allPokemon.filter(p => p.name.includes(input));
-  
-  card.innerHTML = "";
-  loadMoreBtn.style.display = "none";
-  
-  if (results.length === 0) {
-    card.innerHTML = `<p data-id="not-found">No Pokémon found.</p>`;
-    return;
-  }
+    searchResults = allPokemon.filter(p => p.name.includes(input));
+    
+    card.innerHTML = "";
+    loadMoreBtn.style.display = "none";
+    
+    if (searchResults.length === 0) {
+        card.innerHTML = `<p data-id="not-found">No Pokémon found.</p>`;
+        return;
+    }
 
-  results.forEach(pokemon => renderCard(pokemon));
+    searchResults.forEach(pokemon => renderCard(pokemon));
 }
 
 function resetSearch() {
-  document.getElementById("search-input").value = "";
-  card.innerHTML = "";
-  loadMoreBtn.style.display = "block";
-  allPokemon.forEach(pokemon => renderCard(pokemon));
+    document.getElementById("search-input").value = "";
+    searchResults = [];
+    card.innerHTML = "";
+    loadMoreBtn.style.display = "block";
+    allPokemon.forEach(pokemon => renderCard(pokemon));
 }
