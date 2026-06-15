@@ -231,6 +231,10 @@ dialog::backdrop {
   animation: spin 0.8s linear infinite;
 }
 
+body.no-scroll {
+  overflow: hidden;
+}
+
 @keyframes spin {
   to { transform: rotate(360deg); }
 }

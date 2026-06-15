@@ -42,8 +42,8 @@ function renderCard(pokemon) {
     const activeList = searchResults.length > 0 ? searchResults : allPokemon;
     const index = activeList.indexOf(pokemon);
     card.innerHTML += `
-        <div class="pokemon-card" style="background: var(--type-${mainType})" onclick="openDialog(${index})">
-            <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+        <div class="pokemon-card" data-id="card" style="background: var(--type-${mainType})" onclick="openDialog(${index})">
+            <img data-id="card-image" src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
             <h2>${pokemon.name}</h2>
             <p class="type-badge">${pokemon.types[0].type.name}</p>
         </div>

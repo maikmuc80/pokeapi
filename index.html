@@ -13,13 +13,13 @@
             <img src="./assets/icon/pokeball.png" alt="">
             <h1>Pokedex</h1>
             <div>
-                <input class="search-input" id="search-input" type="text" placeholder="search">
+                <input class="search-input" id="search-input" data-id="search-input" type="text" placeholder="search">
                 <button onclick="searchPokemon()">Search</button>
                 <button onclick="resetSearch()">Reset</button>
             </div>
         </div> 
     </header>
-    <main id="content">
+    <main id="content" data-id="content">
         <div id="card" class="card" ></div>
         <button id="load-more-button" onclick="loadPokemon()">Load more</button>
         <div id="loader">
