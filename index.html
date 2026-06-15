@@ -22,6 +22,19 @@
         <div id="loader"></div>
         <button id="load-more-button" onclick="loadPokemon()">Load more</button>
     </main>
+    <dialog id="dialog" data-id="dialog" onclick="handleDialogClick(event)">
+        <div id="overlay-pokemon-name" data-id="overlay-pokemon-name">
+            <button id="close-dialog-button" data-id="close-dialog-button" onclick="closeDialog()">X</button>
+            <img id="dialog-image" data-id="dialog-image" src="" alt="">
+            <h2 id="dialog-name"></h2>
+            <div id="dialog-types"></div>
+            <div id="dialog-stats"></div>
+            <div class="dialog-navigation">
+                <button id="prev-button" data-id="prev-button" onclick="openDialog(currentIndex - 1)">←</button>
+                <button id="next-button" data-id="next-button" onclick="openDialog(currentIndex + 1)">→</button>
+            </div>
+        </div>
+    </dialog>
     <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
