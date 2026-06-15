@@ -20,8 +20,11 @@
     </header>
     <main id="content">
         <div id="card" class="card" ></div>
-        <div id="loader"></div>
         <button id="load-more-button" onclick="loadPokemon()">Load more</button>
+        <div id="loader">
+            <div class="loader-spinner"></div>
+            <p>Loading...</p>
+        </div>
     </main>
     <dialog id="dialog" data-id="dialog" onclick="handleDialogClick(event)">
         <div id="overlay-pokemon-name" data-id="overlay-pokemon-name">
@@ -36,6 +39,7 @@
             </div>
         </div>
     </dialog>
+    
     <script type="text/javascript" src="script.js"></script>
 </body>
 </html>

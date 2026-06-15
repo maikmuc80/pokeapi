@@ -23,6 +23,7 @@ function init() {
 
 async function loadPokemon() {
     loadMoreBtn.disabled = true;
+    loader.classList.add("active");
     const response = await fetch(`${API_URL}?limit=${PAGE_SIZE}&offset=${offset}`);
     const data = await response.json();
     const details = await Promise.all(
@@ -31,8 +32,8 @@ async function loadPokemon() {
         allPokemon.push(...details);
         details.forEach(pokemon => renderCard(pokemon));
     offset += PAGE_SIZE;
+    loader.classList.remove("active");
     loadMoreBtn.disabled = false;
-    console.log(offset);
 }
 
 function renderCard(pokemon) {
