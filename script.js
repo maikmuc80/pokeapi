@@ -80,10 +80,10 @@ function searchPokemon() {
         return;
     }
 
-
   const results = allPokemon.filter(p => p.name.includes(input));
   
   card.innerHTML = "";
+  loadMoreBtn.style.display = "none";
   
   if (results.length === 0) {
     card.innerHTML = `<p data-id="not-found">No Pokémon found.</p>`;
@@ -96,5 +96,6 @@ function searchPokemon() {
 function resetSearch() {
   document.getElementById("search-input").value = "";
   card.innerHTML = "";
+  loadMoreBtn.style.display = "block";
   allPokemon.forEach(pokemon => renderCard(pokemon));
 }
