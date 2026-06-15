@@ -50,10 +50,12 @@ function renderCard(pokemon) {
 function openDialog(index) {
     currentIndex = index;
     const pokemon = allPokemon[index];
+    const mainType = pokemon.types[0].type.name;
     dialogImage.src = pokemon.sprites.front_default;
     dialogName.textContent = pokemon.name.toUpperCase();
     dialogTypes.innerHTML = pokemon.types.map(t => `<span class="type-badge">${t.type.name}</span>`).join("");
     dialogStats.innerHTML = pokemon.stats.map(s => `<p>${s.stat.name}: ${s.base_stat}</p>`).join("");
+    document.getElementById("overlay-pokemon-name").style.background = `var(--type-${mainType})`;
     dialog.showModal();
     document.body.classList.add("no-scroll");
 }
