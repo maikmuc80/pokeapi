@@ -12,16 +12,16 @@
         <div class="header_inner">
             <img src="./assets/icon/pokeball.png" alt="">
             <h1>Pokedex</h1>
-            <div>
-                <input class="search-input" id="search-input" data-id="search-input" type="text" placeholder="search">
-                <button onclick="searchPokemon()">Search</button>
-                <button onclick="resetSearch()">Reset</button>
+            <div class="search-bar">
+                <input class="search-input" id="search-input" data-id="search-input" type="text" placeholder="Search Pokémon">
+                <button class="btn-search" data-id="search-button" onclick="searchPokemon()">Search</button>
+                <button class="btn-reset" onclick="resetSearch()">Reset</button>
             </div>
         </div> 
     </header>
     <main id="content" data-id="content">
         <div id="card" class="card" ></div>
-        <button id="load-more-button" onclick="loadPokemon()">Load more</button>
+        <button id="load-more-button" data-id="load-more-button" onclick="loadPokemon()">Load more</button>
         <div id="loader">
             <div class="loader-spinner"></div>
             <p>Loading...</p>
@@ -29,14 +29,20 @@
     </main>
     <dialog id="dialog" data-id="dialog" onclick="handleDialogClick(event)">
         <div id="overlay-pokemon-name" data-id="overlay-pokemon-name">
-            <button id="close-dialog-button" data-id="close-dialog-button" onclick="closeDialog()">X</button>
-            <img id="dialog-image" data-id="dialog-image" src="" alt="">
-            <h2 id="dialog-name"></h2>
-            <div id="dialog-types"></div>
-            <div id="dialog-stats"></div>
-            <div class="dialog-navigation">
-                <button id="prev-button" data-id="prev-button" onclick="openDialog(currentIndex - 1)">←</button>
-                <button id="next-button" data-id="next-button" onclick="openDialog(currentIndex + 1)">→</button>
+            <div id="dialog-header" class="dialog-header">
+                <button id="close-dialog-button" data-id="close-dialog-button" onclick="closeDialog()">&times;</button>
+                <img class="dialog-pokeball" src="./assets/icon/pokeball.png" alt="">
+                <span id="dialog-id"></span>
+                <h2 id="dialog-name"></h2>
+                <div id="dialog-types"></div>
+                <img id="dialog-image" data-id="dialog-image" src="" alt="">
+            </div>
+            <div class="dialog-body">
+                <div id="dialog-stats"></div>
+                <div class="dialog-navigation">
+                    <button id="prev-button" data-id="prev-button" onclick="openDialog(currentIndex - 1)">←</button>
+                    <button id="next-button" data-id="next-button" onclick="openDialog(currentIndex + 1)">→</button>
+                </div>
             </div>
         </div>
     </dialog>
