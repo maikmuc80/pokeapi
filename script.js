@@ -63,8 +63,14 @@ function openDialog(index) {
     if (index < 0 || index >= activeList.length) return;
     currentIndex = index;
     fillDialog(activeList[index]);
+    updateNavButtons(activeList);
     dialog.showModal();
     document.body.classList.add("no-scroll");
+}
+
+function updateNavButtons(activeList) {
+    document.getElementById("prev-button").style.visibility = currentIndex === 0 ? "hidden" : "visible";
+    document.getElementById("next-button").style.visibility = currentIndex === activeList.length - 1 ? "hidden" : "visible";
 }
 
 function fillDialog(pokemon) {
